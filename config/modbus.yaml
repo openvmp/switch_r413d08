@@ -1,0 +1,41 @@
+holding_registers:
+  - addr: 0x0001
+    name: channel1
+    value:
+     min: 0x0100
+     max: 0x0200
+  - addr: 0x0002
+    name: channel2
+    value:
+     min: 0x0100
+     max: 0x0200
+  - addr: 0x0003
+    name: channel3
+    value:
+     min: 0x0100
+     max: 0x0200
+  - addr: 0x0004
+    name: channel4
+    value:
+     min: 0x0100
+     max: 0x0200
+  - addr: 0x0005
+    name: channel5
+    value:
+     min: 0x0100
+     max: 0x0200
+  - addr: 0x0006
+    name: channel6
+    value:
+     min: 0x0100
+     max: 0x0200
+  - addr: 0x0007
+    name: channel7
+    value:
+     min: 0x0100
+     max: 0x0200
+  - addr: 0x0008
+    name: channel8
+    value:
+     min: 0x0100
+     max: 0x0200

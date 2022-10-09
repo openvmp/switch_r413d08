@@ -14,16 +14,24 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+find_package(modbus REQUIRED)
 find_package(modbus_rtu REQUIRED)
-find_package(switch REQUIRED)
+find_package(switch_interface REQUIRED)
 
 # Logic shared by all targets
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "srv/ChangeLeafId.srv"
+)
+rosidl_get_typesupport_target(cpp_typesupport_target
+  ${PROJECT_NAME} "rosidl_typesupport_cpp")
+
 include_directories(
   include
   ${serial_INCLUDE_DIRS}
   ${modbus_INCLUDE_DIRS}
   ${modbus_rtu_INCLUDE_DIRS}
-  ${switch_INCLUDE_DIRS}
+  ${switch_interface_INCLUDE_DIRS}
 )
 
 set(project_SOURCE_FILES
@@ -36,19 +44,19 @@ set(project_LIBRARIES
   ${modbus_LIBRARIES}
   ${modbus_rtu_LIBRARIES}
   ${modbus_rtu_native_LIBRARIES}
-  ${switch_LIBRARIES}
-  ${switch_native_LIBRARIES}
+  ${switch_interface_LIBRARIES}
+  ${switch_interface_native_LIBRARIES}
 )
 
 set(project_DEPENDENCIES
   rclcpp
   modbus_rtu
-  switch
+  switch_interface
 )
 
 # Executable target
 add_executable(${PROJECT_NAME}_standalone src/main.cpp ${project_SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME}_standalone ${project_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_standalone ${project_LIBRARIES} "${cpp_typesupport_target}")
 ament_target_dependencies(${PROJECT_NAME}_standalone ${project_DEPENDENCIES})
 install(TARGETS
   ${PROJECT_NAME}_standalone
@@ -57,7 +65,7 @@ install(TARGETS
 
 # Library target
 add_library(${PROJECT_NAME}_native ${project_SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME}_native ${project_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_native ${project_LIBRARIES} "${cpp_typesupport_target}")
 ament_target_dependencies(${PROJECT_NAME}_native ${project_DEPENDENCIES})
 ament_export_dependencies(${project_DEPENDENCIES} ${modbus_rtu_DEPENDENCIES} ${switch_DEPENDENCIES})
 install(TARGETS
