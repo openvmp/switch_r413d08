@@ -2,6 +2,9 @@
 
 [![License](./license.svg)](./LICENSE.txt)
 
+This package is a part of [the OpenVMP project](https://github.com/openvmp/openvmp).
+But it's designed to be universal and usable independently from the rest of OpenVMP or in a combination with select OpenVMP packages.
+
 ## ROS2 package for R413D08
 
 This package implements management and control of R413D08. It could possibly work as well for R421A08, STM8S103, N4D8B08, UD74B08 and others.
