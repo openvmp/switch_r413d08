@@ -11,7 +11,7 @@
 
 namespace switch_r413d08 {
 
-Node::Node() : rclcpp::Node::Node("sswitch_r413d08") {
+Node::Node() : rclcpp::Node::Node("switch_r413d08") {
   intf_ = std::make_shared<Interface>(this);
 }
 
