@@ -9,6 +9,7 @@
 
 #include "switch_r413d08/interface.hpp"
 
+#include <ament_index_cpp/get_package_share_directory.hpp>
 #include <locale>
 
 #include "modbus_rtu/factory.hpp"
@@ -22,13 +23,15 @@ Interface::Interface(rclcpp::Node *node) : switch_interface::Implementation(node
   node->declare_parameter("switch_r413d08_inverted", false);
   node->get_parameter("switch_r413d08_inverted", param_inverted_);
 
+  auto prefix = get_prefix_();
   change_leaf_id_ = node_->create_service<switch_r413d08::srv::ChangeLeafId>(
-      interface_prefix_.as_string() + "/change_leaf_id",
+      prefix + "/change_leaf_id",
       std::bind(&Interface::change_leaf_id_handler_, this,
                 std::placeholders::_1, std::placeholders::_2));
 
-  prov_->generate_modbus_mappings(interface_prefix_.as_string(),
-                                  "config/modbus.yaml");
+  std::string share_dir =
+      ament_index_cpp::get_package_share_directory("switch_r413d08");
+  prov_->generate_modbus_mappings(prefix, share_dir + "/config/modbus.yaml");
 }
 
 void Interface::change_leaf_id_handler_(
