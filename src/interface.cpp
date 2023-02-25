@@ -16,7 +16,7 @@
 
 namespace switch_r413d08 {
 
-Interface::Interface(rclcpp::Node *node) : switch_interface::Interface(node) {
+Interface::Interface(rclcpp::Node *node) : switch_interface::Implementation(node) {
   prov_ = modbus_rtu::Factory::New(node);
 
   node->declare_parameter("switch_r413d08_inverted", false);

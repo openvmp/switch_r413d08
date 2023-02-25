@@ -16,12 +16,12 @@
 #include "modbus/interface.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/int32.hpp"
-#include "switch_interface/interface.hpp"
+#include "switch_interface/implementation.hpp"
 #include "switch_r413d08/srv/change_leaf_id.hpp"
 
 namespace switch_r413d08 {
 
-class Interface : public switch_interface::Interface {
+class Interface : public switch_interface::Implementation {
  public:
   Interface(rclcpp::Node *node);
   virtual ~Interface() {}
