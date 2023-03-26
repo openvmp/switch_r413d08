@@ -8,11 +8,11 @@
  */
 
 #include "rclcpp/rclcpp.hpp"
-#include "switch_r413d08/node.hpp"
+#include "ros2_r413d08/node.hpp"
 
 int main(int argc, char **argv) {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<switch_r413d08::Node>();
+  auto node = std::make_shared<ros2_r413d08::Node>();
 
   rclcpp::executors::MultiThreadedExecutor exec;
   exec.add_node(node);

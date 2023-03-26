@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(switch_r413d08)
+project(ros2_r413d08)
 
 # Compiler settings
 if(NOT CMAKE_CXX_STANDARD)
@@ -16,9 +16,9 @@ find_package(ament_index_cpp REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-find_package(modbus REQUIRED)
-find_package(modbus_rtu REQUIRED)
-find_package(switch_interface REQUIRED)
+find_package(ros2_modbus REQUIRED)
+find_package(ros2_modbus_rtu REQUIRED)
+find_package(remote_switch REQUIRED)
 
 # Logic shared by all targets
 rosidl_generate_interfaces(${PROJECT_NAME}
@@ -29,10 +29,10 @@ rosidl_get_typesupport_target(cpp_typesupport_target
 
 include_directories(
   include
-  ${serial_INCLUDE_DIRS}
-  ${modbus_INCLUDE_DIRS}
-  ${modbus_rtu_INCLUDE_DIRS}
-  ${switch_interface_INCLUDE_DIRS}
+  ${ros2_serial_INCLUDE_DIRS}
+  ${ros2_modbus_INCLUDE_DIRS}
+  ${ros2_modbus_rtu_INCLUDE_DIRS}
+  ${remote_switch_INCLUDE_DIRS}
 )
 
 set(project_SOURCE_FILES
@@ -42,18 +42,18 @@ set(project_SOURCE_FILES
 
 set(project_LIBRARIES
   ${rclcpp_LIBRARIES}
-  ${modbus_LIBRARIES}
-  ${modbus_rtu_LIBRARIES}
-  ${modbus_rtu_native_LIBRARIES}
-  ${switch_interface_LIBRARIES}
-  ${switch_interface_native_LIBRARIES}
+  ${ros2_modbus_LIBRARIES}
+  ${ros2_modbus_rtu_LIBRARIES}
+  ${ros2_modbus_rtu_native_LIBRARIES}
+  ${remote_switch_LIBRARIES}
+  ${remote_switch_native_LIBRARIES}
 )
 
 set(project_DEPENDENCIES
   ament_index_cpp
   rclcpp
-  modbus_rtu
-  switch_interface
+  ros2_modbus_rtu
+  remote_switch
 )
 
 # Executable target
@@ -69,7 +69,7 @@ install(TARGETS
 add_library(${PROJECT_NAME}_native ${project_SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME}_native ${project_LIBRARIES} "${cpp_typesupport_target}")
 ament_target_dependencies(${PROJECT_NAME}_native ${project_DEPENDENCIES})
-ament_export_dependencies(${project_DEPENDENCIES} ${modbus_rtu_DEPENDENCIES} ${switch_DEPENDENCIES})
+ament_export_dependencies(${project_DEPENDENCIES} ${ros2_modbus_rtu_DEPENDENCIES} ${remote_switch_DEPENDENCIES})
 install(TARGETS
   ${PROJECT_NAME}_native
   DESTINATION lib

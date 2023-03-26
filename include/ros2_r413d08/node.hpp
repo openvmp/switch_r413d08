@@ -14,10 +14,9 @@
 #include <string>
 
 #include "rclcpp/rclcpp.hpp"
-#include "serial/port.hpp"
-#include "switch_r413d08/interface.hpp"
+#include "ros2_r413d08/interface.hpp"
 
-namespace switch_r413d08 {
+namespace ros2_r413d08 {
 
 class Node : public rclcpp::Node {
  public:
@@ -27,6 +26,6 @@ class Node : public rclcpp::Node {
   std::shared_ptr<Interface> intf_;
 };
 
-}  // namespace switch_r413d08
+}  // namespace ros2_r413d08
 
 #endif  // OPENVMP_SWITCH_R413D08_NODE_H

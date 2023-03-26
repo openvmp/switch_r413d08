@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>switch_r413d08</name>
+  <name>ros2_r413d08</name>
   <version>0.0.1</version>
   <description>RS485 relay switch board R413D08</description>
   <maintainer email="openvmp@proton.me">Roman Kuzmenko</maintainer>
@@ -11,9 +11,9 @@
   <depend>ament_index_cpp</depend>
   <depend>rclcpp</depend>
   <depend>stdmsgs</depend>
-  <depend>switch_interface</depend>
-  <depend>modbus_rtu</depend>
-  <depend>serial</depend>
+  <depend>remote_switch</depend>
+  <depend>ros2_modbus_rtu</depend>
+  <depend>ros2_serial</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
