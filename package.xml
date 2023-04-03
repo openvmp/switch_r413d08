@@ -10,7 +10,7 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>ament_index_cpp</depend>
   <depend>rclcpp</depend>
-  <depend>stdmsgs</depend>
+  <depend>std_msgs</depend>
   <depend>remote_switch</depend>
   <depend>ros2_modbus_rtu</depend>
   <depend>ros2_serial</depend>
