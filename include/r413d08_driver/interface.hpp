@@ -13,13 +13,13 @@
 #include <memory>
 #include <string>
 
+#include "r413d08_driver/srv/change_leaf_id.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include "remote_modbus/interface.hpp"
 #include "remote_switch/implementation.hpp"
-#include "ros2_modbus/interface.hpp"
-#include "ros2_r413d08/srv/change_leaf_id.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-namespace ros2_r413d08 {
+namespace r413d08_driver {
 
 class Interface : public remote_switch::Implementation {
  public:
@@ -34,7 +34,7 @@ class Interface : public remote_switch::Implementation {
       std::shared_ptr<remote_switch::srv::Switch::Response> response) override;
 
  private:
-  std::shared_ptr<ros2_modbus::Interface> prov_;
+  std::shared_ptr<remote_modbus::Interface> prov_;
 
   rclcpp::Service<srv::ChangeLeafId>::SharedPtr change_leaf_id_;
   void change_leaf_id_handler_(
@@ -42,6 +42,6 @@ class Interface : public remote_switch::Implementation {
       std::shared_ptr<srv::ChangeLeafId::Response> response);
 };
 
-}  // namespace ros2_r413d08
+}  // namespace r413d08_driver
 
 #endif  // OPENVMP_SWITCH_R413D08_INTERFACE_H

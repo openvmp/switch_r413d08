@@ -1,13 +1,8 @@
-# OpenVMP
+# ROS2 package for R413D08
 
-[![License](./license.svg)](./LICENSE.txt)
+[![License](./apache20.svg)](./LICENSE.txt)
 
-This package is a part of [the OpenVMP project](https://github.com/openvmp/openvmp).
-But it's designed to be universal and usable independently from the rest of OpenVMP or in a combination with select OpenVMP packages.
-
-## ROS2 package for R413D08
-
-This package implements management and control of R413D08. It could possibly work as well for R421A08, STM8S103, N4D8B08, UD74B08 and others.
+This package implements management and control of R413D08. It could possibly work as well for R421A08, STM8S103, N4D8B08 and others.
 
 *Note: there must be something shared by all these boards
 (like a chip or firmware) that should be used in the name of this package
@@ -19,7 +14,7 @@ It is recommended to the use the remote interface
 (see '**modbus_is_remote**' below) so that the drivers of all devices
 use the same way of accessing the bus.
 
-### Parameters
+## Parameters
 
 - **switch_r413d08_inverted** _(Default: false)_
 
@@ -58,7 +53,7 @@ use the same way of accessing the bus.
 
   The ID of this device on the Modbus bus.
 
-### Publishers
+## Publishers
 
 - **<switch_r413d08_prefix>/channel<N>/last_changed**
 
@@ -69,7 +64,7 @@ use the same way of accessing the bus.
 
   The boolean flag of the current state of the corresponding channel.
 
-### Services
+## Services
 
 - **<switch_r413d08_prefix>/channel<N>/on**
 
@@ -86,4 +81,3 @@ use the same way of accessing the bus.
 - **<switch_r413d08_prefix>/change_leaf_id**
 
   Change the Modbus leaf\_id of this device.
-

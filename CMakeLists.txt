@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(ros2_r413d08)
+project(r413d08_driver)
 
 # Compiler settings
 if(NOT CMAKE_CXX_STANDARD)
@@ -16,8 +16,8 @@ find_package(ament_index_cpp REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-find_package(ros2_modbus REQUIRED)
-find_package(ros2_modbus_rtu REQUIRED)
+find_package(remote_modbus REQUIRED)
+find_package(remote_modbus_rtu REQUIRED)
 find_package(remote_switch REQUIRED)
 
 # Logic shared by all targets
@@ -29,9 +29,9 @@ rosidl_get_typesupport_target(cpp_typesupport_target
 
 include_directories(
   include
-  ${ros2_serial_INCLUDE_DIRS}
-  ${ros2_modbus_INCLUDE_DIRS}
-  ${ros2_modbus_rtu_INCLUDE_DIRS}
+  ${remote_serial_INCLUDE_DIRS}
+  ${remote_modbus_INCLUDE_DIRS}
+  ${remote_modbus_rtu_INCLUDE_DIRS}
   ${remote_switch_INCLUDE_DIRS}
 )
 
@@ -42,9 +42,9 @@ set(project_SOURCE_FILES
 
 set(project_LIBRARIES
   ${rclcpp_LIBRARIES}
-  ${ros2_modbus_LIBRARIES}
-  ${ros2_modbus_rtu_LIBRARIES}
-  ${ros2_modbus_rtu_native_LIBRARIES}
+  ${remote_modbus_LIBRARIES}
+  ${remote_modbus_rtu_LIBRARIES}
+  ${remote_modbus_rtu_native_LIBRARIES}
   ${remote_switch_LIBRARIES}
   ${remote_switch_native_LIBRARIES}
 )
@@ -52,7 +52,7 @@ set(project_LIBRARIES
 set(project_DEPENDENCIES
   ament_index_cpp
   rclcpp
-  ros2_modbus_rtu
+  remote_modbus_rtu
   remote_switch
 )
 
@@ -69,7 +69,7 @@ install(TARGETS
 add_library(${PROJECT_NAME}_native ${project_SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME}_native ${project_LIBRARIES} "${cpp_typesupport_target}")
 ament_target_dependencies(${PROJECT_NAME}_native ${project_DEPENDENCIES})
-ament_export_dependencies(${project_DEPENDENCIES} ${ros2_modbus_rtu_DEPENDENCIES} ${remote_switch_DEPENDENCIES})
+ament_export_dependencies(${project_DEPENDENCIES} ${remote_modbus_rtu_DEPENDENCIES} ${remote_switch_DEPENDENCIES})
 install(TARGETS
   ${PROJECT_NAME}_native
   DESTINATION lib

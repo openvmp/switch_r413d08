@@ -13,10 +13,10 @@
 #include <memory>
 #include <string>
 
+#include "r413d08_driver/interface.hpp"
 #include "rclcpp/rclcpp.hpp"
-#include "ros2_r413d08/interface.hpp"
 
-namespace ros2_r413d08 {
+namespace r413d08_driver {
 
 class Node : public rclcpp::Node {
  public:
@@ -26,6 +26,6 @@ class Node : public rclcpp::Node {
   std::shared_ptr<Interface> intf_;
 };
 
-}  // namespace ros2_r413d08
+}  // namespace r413d08_driver
 
 #endif  // OPENVMP_SWITCH_R413D08_NODE_H
